@@ -1,0 +1,51 @@
+<div class="container">
+  <h1>Iniciar nuevo proceso - Carta de presentación</h1>
+
+  <!-- Datos del Estudiante -->
+  <div class="card">
+    <h2>Datos Estudiante:</h2>
+    <p><strong>Estudiante:</strong> {{ estudiante.nombre }}</p>
+    <p><strong>Código de estudiante:</strong> {{ estudiante.codigo }}</p>
+    <p><strong>DNI:</strong> {{ estudiante.dni }}</p>
+    <p><strong>Teléfono:</strong> {{ estudiante.telefono }}</p>
+    <p><strong>Correo:</strong> {{ estudiante.correo }}</p>
+  </div>
+
+  <!-- Selección de Empresa y Línea -->
+  <div class="form-group">
+    <label for="empresa">Empresa:</label>
+    <select id="empresa" [(ngModel)]="ppp.empresaId" (change)="onEmpresaChange()">
+      <option *ngFor="let empresa of empresas" [value]="empresa.id">
+        {{ empresa.razonSocial }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="linea">Línea de Carrera:</label>
+    <select id="linea" [(ngModel)]="ppp.lineaId">
+      <option *ngFor="let linea of lineas" [value]="linea.id">
+        {{ linea.linea }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Detalles de la Empresa Seleccionada -->
+  <div *ngIf="empresaSeleccionada && empresaSeleccionada.id" class="card">
+    <h2>Datos Empresa:</h2>
+    <p><strong>Nombre:</strong> {{ empresaSeleccionada.razonSocial }}</p>
+    <p><strong>Número de RUC:</strong> {{ empresaSeleccionada.ruc }}</p>
+    <p><strong>Domicilio Social:</strong> {{ empresaSeleccionada.direccion }}</p>
+    <p><strong>Teléfono:</strong> {{ empresaSeleccionada.telefono }}</p>
+    <p><strong>Fax:</strong> {{ empresaSeleccionada.fax }}</p>
+    <p><strong>Correo Electrónico:</strong> {{ empresaSeleccionada.email }}</p>
+    <p><strong>Página Web:</strong> {{ empresaSeleccionada.paginaWeb }}</p>
+    <p><strong>Forma Jurídica:</strong> {{ empresaSeleccionada.formaJuridica }}</p>
+  </div>
+
+  <!-- Botones de acción -->
+  <div class="actions">
+    <button class="cancel" (click)="cancelar()">Cancelar</button>
+    <button class="confirm" (click)="confirmarPPP()">Confirmado</button>
+  </div>
+</div>
